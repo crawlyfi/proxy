@@ -26,7 +26,7 @@ server.on('connect', (req, socket, head) => {
 
     const ip = parseIp(req)
 
-    if(!ip.toString().includes('65.108.50.229')){
+    if(!ip.toString().includes('65.108.80.20') || !ip.toString().includes('65.108.50.229')){
         console.log('IP: ', ip)
         socket.end('HTTP/1.1 403 Forbidden\r');
         return;
