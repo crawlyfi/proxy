@@ -17,7 +17,6 @@ const config = {
 // Create server
 const server = http.createServer();
 
-
 // Accept client via CONNECT method
 server.on('connect', (req, socket, head) => {
 
@@ -25,7 +24,13 @@ server.on('connect', (req, socket, head) => {
     req.headers['x-forwarded-for']?.split(',').shift()
     || req.socket?.remoteAddress
 
-    console.log(parseIp(req));
+    const ip = parseIp(req)
+
+    if(ip.toString().includes('65.108.50.229')){
+        console.log('IP: ', ip)
+        socket.end('HTTP/1.1 403 Forbidden\r');
+        return;
+    }
 
     // Decrypt target
     parseTarget(req.url, (err, target) => {
