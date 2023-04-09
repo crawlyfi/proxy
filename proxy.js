@@ -8,12 +8,6 @@ const config = {
     port: process.env.port || 3128,
 };
 
-// function buildAuthHeader(user, pass) {
-//     return 'Basic ' + new Buffer(user + ':' + pass).toString('base64');
-// }
-// const auth = buildAuthHeader('crawlyfi', 'crawlyfiCrawlyfi2019');
-// console.log(auth)
-
 // Create server
 const server = http.createServer();
 
@@ -26,7 +20,7 @@ server.on('connect', (req, socket, head) => {
 
     const ip = parseIp(req)
 
-    if(!ip.toString().includes('65.109.127.39') && !ip.toString().includes('65.108.139.105')){
+    if(!ip.toString().includes('65.109.127.39') && !ip.toString().includes('65.108.139.105') && !ip.toString().includes('212.107.148.17')){
         console.log('IP: ', ip)
         socket.end('HTTP/1.1 403 Forbidden\r');
         socket.destroy();
